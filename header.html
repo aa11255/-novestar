@@ -1,0 +1,31 @@
+<header class="fixed top-0 z-50 w-full border-b border-white/40 bg-white/30 px-4 py-3 shadow-sm backdrop-blur-md md:px-6 rounded-b-3xl">
+  <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
+    <a href="/" class="group flex items-center gap-3">
+      <img src="Path/To/Anime_Icon.png" alt="智简云萌 Logo" class="h-10 w-10 rounded-full object-cover ring-2 ring-pink-200/70 transition group-hover:scale-105" />
+      <span class="text-xl font-bold tracking-wide text-pink-500">智简云萌</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex">
+      <a href="/" class="text-sm font-medium text-gray-700 transition hover:-translate-y-1 hover:text-pink-500">首页</a>
+      <a href="/services" class="text-sm font-medium text-gray-700 transition hover:-translate-y-1 hover:text-pink-500">云服务</a>
+      <a href="/products" class="text-sm font-medium text-gray-700 transition hover:-translate-y-1 hover:text-pink-500">主要产品</a>
+      <a href="/help" class="text-sm font-medium text-gray-700 transition hover:-translate-y-1 hover:text-pink-500">帮助中心</a>
+    </nav>
+
+    <div class="flex items-center gap-2 md:gap-3">
+      {if $userinfo}
+        <a href="/clientarea" class="flex items-center rounded-full border border-pink-200/80 bg-pink-100 px-3 py-1 shadow-sm transition hover:-translate-y-0.5 hover:bg-pink-50">
+          <img src="Path/To/Anime_Icon.png" alt="{$userinfo.username} Avatar" class="h-8 w-8 rounded-full object-cover" />
+          <span class="ml-2 max-w-[132px] truncate text-sm font-semibold text-pink-600">Hi, {$userinfo.username}</span>
+        </a>
+      {else}
+        <a href="/login" class="rounded-full border border-pink-300 bg-white px-4 py-2 text-sm font-semibold text-pink-500 shadow-sm transition hover:-translate-y-0.5 hover:bg-pink-50 md:px-5">
+          登录
+        </a>
+        <a href="/register" class="rounded-full border border-pink-400 bg-pink-400 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-pink-500 md:px-5">
+          注册
+        </a>
+      {/if}
+    </div>
+  </div>
+</header>
