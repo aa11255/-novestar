@@ -22,7 +22,7 @@
     <section class="w-full lg:w-2/3">
       <h1 class="text-3xl font-extrabold text-transparent bg-gradient-to-r from-pink-400 to-sky-400 bg-clip-text drop-shadow-sm md:text-4xl">
         {if $userinfo}
-          欢迎回来主人，{$userinfo.username}！
+          欢迎回来主人，{$userinfo.username|escape}！
         {else}
           欢迎来到智简云萌！
         {/if}
@@ -60,13 +60,13 @@
           <div>
             {foreach $services as $service}
               <div class="mb-2 flex items-center justify-between rounded-2xl border border-white/50 bg-white/50 p-3 shadow-sm">
-                <span class="truncate pr-4 text-sm font-medium text-gray-700">{$service.productname|default:'未命名服务'}</span>
+                <span class="truncate pr-4 text-sm font-medium text-gray-700">{$service.productname|default:'未命名服务'|escape}</span>
                 {if $service.status == 'Active'}
                   <span class="rounded-full bg-teal-300 px-3 py-1 text-xs font-semibold text-teal-900">活跃</span>
                 {elseif $service.status == 'Suspended'}
                   <span class="rounded-full bg-amber-300 px-3 py-1 text-xs font-semibold text-amber-900">暂停</span>
                 {else}
-                  <span class="rounded-full bg-gray-300 px-3 py-1 text-xs font-semibold text-gray-700">{$service.status|default:'过期'}</span>
+                  <span class="rounded-full bg-gray-300 px-3 py-1 text-xs font-semibold text-gray-700">{$service.status|default:'过期'|escape}</span>
                 {/if}
               </div>
             {/foreach}
