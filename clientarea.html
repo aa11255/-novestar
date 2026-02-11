@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智简云萌 - 会员中心</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: linear-gradient(120deg, rgba(254, 242, 242, 0.72), rgba(240, 249, 255, 0.64)), url('Path/To/Anime_Background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="text-gray-700">
+  {include file='header.html'}
+
+  <main class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 pt-24 lg:flex-row lg:gap-8">
+    <section class="w-full lg:w-2/3">
+      <h1 class="text-3xl font-extrabold text-transparent bg-gradient-to-r from-pink-400 to-sky-400 bg-clip-text drop-shadow-sm md:text-4xl">
+        {if $userinfo}
+          欢迎回来主人，{$userinfo.username|escape}！
+        {else}
+          欢迎来到智简云萌！
+        {/if}
+      </h1>
+
+      <div class="my-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <article class="rounded-3xl border border-white/50 bg-gradient-to-br from-pink-100/40 to-white/40 p-6 shadow-lg backdrop-blur-md">
+          <div class="flex items-center gap-4">
+            <img src="Path/To/Anime_Icon.png" alt="余额宝箱" class="h-20 w-20 rounded-2xl object-cover ring-2 ring-pink-200/60" />
+            <div>
+              <p class="text-3xl font-black text-pink-500">￥{if $userinfo}{$userinfo.credit|default:'0.00'}{else}0.00{/if}</p>
+              <p class="mt-1 text-sm font-semibold text-pink-600/90">账户余额</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="rounded-3xl border border-white/50 bg-gradient-to-br from-sky-100/40 to-white/40 p-6 shadow-lg backdrop-blur-md">
+          <div class="flex items-center gap-4">
+            <img src="Path/To/Anime_Icon.png" alt="服务水晶" class="h-20 w-20 rounded-2xl object-cover ring-2 ring-sky-200/70" />
+            <div>
+              <p class="text-3xl font-black text-sky-500">{$clientsstats.productsnumactive|default:0}</p>
+              <p class="mt-1 text-sm font-semibold text-sky-600/90">在役服务</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="rounded-3xl border border-white/50 bg-white/40 p-6 shadow-lg backdrop-blur-md">
+        <div class="mb-4 flex items-center justify-between">
+          <h2 class="text-lg font-bold text-gray-700">近期业务动态</h2>
+          <img src="Path/To/Anime_Icon.png" alt="动态图标" class="h-8 w-8 rounded-full object-cover" />
+        </div>
+
+        {if $services|@count > 0}
+          <div>
+            {foreach $services as $service}
+              <div class="mb-2 flex items-center justify-between rounded-2xl border border-white/50 bg-white/50 p-3 shadow-sm">
+                <span class="truncate pr-4 text-sm font-medium text-gray-700">{$service.productname|default:'未命名服务'|escape}</span>
+                {if $service.status == 'Active'}
+                  <span class="rounded-full bg-teal-300 px-3 py-1 text-xs font-semibold text-teal-900">活跃</span>
+                {elseif $service.status == 'Suspended'}
+                  <span class="rounded-full bg-amber-300 px-3 py-1 text-xs font-semibold text-amber-900">暂停</span>
+                {else}
+                  <span class="rounded-full bg-gray-300 px-3 py-1 text-xs font-semibold text-gray-700">{$service.status|default:'过期'|escape}</span>
+                {/if}
+              </div>
+            {/foreach}
+          </div>
+        {else}
+          <div class="rounded-2xl border border-dashed border-pink-200/90 bg-white/40 p-4 text-sm text-pink-500">
+            当前没有可展示的服务动态，去挑选一个可爱的新服务吧～
+          </div>
+        {/if}
+      </section>
+    </section>
+
+    <aside class="relative hidden min-h-[500px] w-full overflow-hidden rounded-3xl border border-white/40 bg-white/20 shadow-lg backdrop-blur-sm lg:block lg:w-1/3">
+      <img src="Path/To/Mascot_Girl_Big.png" alt="看板娘" class="absolute inset-0 h-full w-full object-cover object-center" />
+      <div class="absolute left-6 top-8 max-w-[75%] rounded-2xl border border-white/60 bg-white/60 px-4 py-3 shadow-md backdrop-blur-sm">
+        <p class="text-sm font-semibold text-pink-600">主人，今天也要元气满满哦！</p>
+      </div>
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/40 to-transparent"></div>
+    </aside>
+  </main>
+</body>
+</html>
